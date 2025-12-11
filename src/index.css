@@ -1,0 +1,22 @@
+@import "tailwindcss";
+
+@keyframes xp-slide {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(320%);
+  }
+}
+.animate-xp-slide {
+  animation: xp-slide 1300ms linear infinite;
+}
+
+@keyframes xpSquareMove {
+  0% { transform: translateX(-60px); }
+  100% { transform: translateX(200px); }
+}
+
+.animate-xp-square {
+  animation: xpSquareMove 1.6s linear infinite;
+}
