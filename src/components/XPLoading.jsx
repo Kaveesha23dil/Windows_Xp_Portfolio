@@ -1,33 +1,52 @@
 import React from "react";
+import xpLogo from "../assets/xp.png";
 
 const XPLoading = () => {
   return (
-    <div className="w-screen h-screen bg-black flex flex-col items-center justify-center text-white">
-      {/* Logo */}
-      <div className="flex items-center space-x-2 mb-6">
-        <img src="src/assets/xp.png" alt="Windows Logo" className="w-12" />
-        <div className="text-center">
-          <h1 className="text-3xl font-semibold">
-            Windows <span className="text-orange-400">XP</span>
-          </h1>
-          <p className="text-sm text-gray-300">Kaveesha Protfilio</p>
+    <div className="w-screen h-screen bg-black flex flex-col items-center justify-center relative font-sans select-none cursor-wait">
+
+      {/* Main Container */}
+      <div className="flex flex-col items-center w-[300px]">
+
+        {/* Logo Section */}
+        <div className="flex items-center justify-center gap-4 mb-16 relative">
+          <div className="absolute -top-6 text-white/50 text-xs tracking-wider">Microsoft</div>
+          {/* Windows Logo */}
+          <div className="w-20 h-20">
+            <img src={xpLogo} alt="Windows Logo" className="w-full h-full object-contain" />
+          </div>
+
+          {/* Text */}
+          <div className="flex flex-col justify-center h-20">
+            <div className="text-white text-5xl font-bold tracking-tighter leading-none relative top-1">
+              Windows
+              <span className="text-[#FF6600] text-3xl italic absolute -top-1 -right-8 font-normal" style={{ fontFamily: 'Arial' }}>xp</span>
+            </div>
+          </div>
+        </div>
+
+        {/* Loading Bar Container */}
+        <div className="w-full h-[14px] border-[1px] border-[#555] rounded-[3px] p-[2px] relative overflow-hidden bg-black mt-4">
+          {/* The Moving Blue Chunks */}
+          <div className="flex gap-[2px] absolute top-[2px] animate-xp-bar w-[60px]">
+            <div className="w-[18px] h-[8px] bg-gradient-to-b from-[#6D91E5] via-[#2F4F9F] to-[#203975] rounded-[1px] shadow-[0_0_2px_rgba(47,79,159,0.8)]"></div>
+            <div className="w-[18px] h-[8px] bg-gradient-to-b from-[#6D91E5] via-[#2F4F9F] to-[#203975] rounded-[1px] shadow-[0_0_2px_rgba(47,79,159,0.8)]"></div>
+            <div className="w-[18px] h-[8px] bg-gradient-to-b from-[#6D91E5] via-[#2F4F9F] to-[#203975] rounded-[1px] shadow-[0_0_2px_rgba(47,79,159,0.8)]"></div>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Footer Copyright */}
+      <div className="absolute bottom-8 flex items-center justify-between w-full px-8">
+        <div className="text-white/60 text-xs">
+          Copyright © Microsoft Corporation
+        </div>
+        <div className="text-white/60 font-bold text-xs italic tracking-widest">
+          Microsoft
         </div>
       </div>
 
-      {/* Loading bar */}
-      <div className="w-[190px] h-[17px] bg-[#1a1a1a] border border-gray-600 rounded-md overflow-hidden relative shadow-[0_0_8px_#000]">
-
-        {/* 3 Squares Moving Together */}
-        <div className="absolute top-[2px] w-[15px] h-[13px] bg-[#0a3cff] animate-xp-square rounded-sm left-[0px]"></div>
-        <div className="absolute top-[2px] w-[15px] h-[13px] bg-[#0a3cff] animate-xp-square rounded-sm left-[20px]"></div>
-        <div className="absolute top-[2px] w-[15px] h-[13px] bg-[#0a3cff] animate-xp-square rounded-sm left-[40px]"></div>
-
-      </div>
-
-      {/* Footer */}
-      <p className="text-xs text-gray-500 absolute bottom-5">
-        © Kaveesha Dilshan
-      </p>
     </div>
   );
 };

@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from 'react';
 import XPLoading from './components/XPLoading';
 import WindowsXPLogin from './components/WindowsXPLogin';
-
+import XPDesktop from './components/XPDesktop';
 
 const App = () => {
   const [loading, setLoading] = useState(true);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
     // Simulate a loading delay (e.g., fetching data)
@@ -15,11 +16,14 @@ const App = () => {
     return () => clearTimeout(timer);
   }, []);
 
-  return (
-    <>
-      {loading ? <XPLoading /> : <WindowsXPLogin />}
-    </>
-  );
+  const handleLogin = () => {
+    setIsLoggedIn(true);
+  };
+
+  if (loading) return <XPLoading />;
+  if (isLoggedIn) return <XPDesktop />;
+
+  return <WindowsXPLogin onLogin={handleLogin} />;
 };
 
 export default App;
