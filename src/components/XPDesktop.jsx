@@ -2,13 +2,40 @@ import React, { useState, useEffect, useRef } from 'react';
 import wallpaper from '../assets/windows_xp_original-wallpaper.jpg';
 import xpIcon from '../assets/xp.png';
 import StartMenu from './StartMenu';
+import DesktopIcon from './DesktopIcon';
+import XPWindow from './XPWindow';
 
 
 export default function XPDesktop() {
     const [time, setTime] = useState(new Date());
     const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
+    const [activeWindows, setActiveWindows] = useState({});
     const startMenuRef = useRef(null);
     const startButtonRef = useRef(null);
+
+    // Window Management
+    const handleOpenWindow = (id, title, content) => {
+        if (activeWindows[id]) {
+            setActiveWindows(prev => ({
+                ...prev,
+                [id]: { ...prev[id], isOpen: true }
+            }));
+            return;
+        }
+
+        setActiveWindows(prev => ({
+            ...prev,
+            [id]: { title, content, isOpen: true }
+        }));
+    };
+
+    const handleCloseWindow = (id) => {
+        setActiveWindows(prev => {
+            const newState = { ...prev };
+            delete newState[id];
+            return newState;
+        });
+    };
 
     useEffect(() => {
         const handleClickOutside = (event) => {
@@ -55,21 +82,38 @@ export default function XPDesktop() {
             {/* Desktop Icons Area */}
             <div className="flex flex-col flex-wrap h-[calc(100vh-30px)] content-start p-2 gap-2">
                 {/* My Computer */}
-                <div className="w-20 flex flex-col items-center gap-1 group cursor-pointer p-1 border border-transparent hover:bg-[#316AC5]/40 hover:border-[#316AC5]/40 rounded-sm">
-                    <div className="w-10 h-10 relative">
-                        <img src="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" alt="My Computer" className="w-full h-full object-contain pointer-events-none drop-shadow-md" />
-                    </div>
-                    <span className="text-white text-xs text-center drop-shadow-[1px_1px_1px_rgba(0,0,0,1)] group-hover:bg-[#316AC5] px-1 rounded-sm line-clamp-2 leading-tight">My Computer</span>
-                </div>
+                <DesktopIcon
+                    label="My Computer"
+                    icon="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png"
+                    onClick={() => handleOpenWindow('my-computer', 'My Computer', <div className="p-4">Welcome to My Computer!</div>)}
+                />
 
                 {/* Recycle Bin */}
-                <div className="w-20 flex flex-col items-center gap-1 group cursor-pointer p-1 border border-transparent hover:bg-[#316AC5]/40 hover:border-[#316AC5]/40 rounded-sm">
-                    <div className="w-10 h-10 relative">
-                        <img src="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png" alt="Recycle Bin" className="w-full h-full object-contain pointer-events-none drop-shadow-md" />
-                    </div>
-                    <span className="text-white text-xs text-center drop-shadow-[1px_1px_1px_rgba(0,0,0,1)] group-hover:bg-[#316AC5] px-1 rounded-sm line-clamp-2 leading-tight">Recycle Bin</span>
-                </div>
+                <DesktopIcon
+                    label="Recycle Bin"
+                    icon="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png"
+                    onClick={() => handleOpenWindow('recycle-bin', 'Recycle Bin', <div className="p-4">Recycle Bin is empty.</div>)}
+                />
+
+                {/* New Folder */}
+                <DesktopIcon
+                    label="New Folder"
+                    icon="https://win98icons.alexmeub.com/icons/png/directory_closed-4.png"
+                    onClick={() => handleOpenWindow('new-folder', 'New Folder', <div className="p-4">This is a new folder.</div>)}
+                />
             </div>
+
+            {/* Windows Layer */}
+            {Object.entries(activeWindows).map(([id, window]) => (
+                <XPWindow
+                    key={id}
+                    title={window.title}
+                    isOpen={window.isOpen}
+                    onClose={() => handleCloseWindow(id)}
+                >
+                    {window.content}
+                </XPWindow>
+            ))}
 
             {/* Taskbar */}
             <div className="absolute bottom-0 w-full h-[30px] bg-gradient-to-b from-[#245DDA] via-[#1F3B9F] to-[#245DDA] flex items-center justify-between z-50 border-t-[2px] border-[#3E80ED]">
