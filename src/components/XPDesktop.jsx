@@ -4,6 +4,7 @@ import xpIcon from '../assets/xp.png';
 import StartMenu from './StartMenu';
 import DesktopIcon from './DesktopIcon';
 import XPWindow from './XPWindow';
+import PaintApp from './PaintApp';
 
 
 export default function XPDesktop() {
@@ -18,14 +19,14 @@ export default function XPDesktop() {
         if (activeWindows[id]) {
             setActiveWindows(prev => ({
                 ...prev,
-                [id]: { ...prev[id], isOpen: true }
+                [id]: { ...prev[id], isOpen: true, isMinimized: false }
             }));
             return;
         }
 
         setActiveWindows(prev => ({
             ...prev,
-            [id]: { title, content, isOpen: true }
+            [id]: { title, content, isOpen: true, isMinimized: false, isMaximized: false }
         }));
     };
 
@@ -35,6 +36,20 @@ export default function XPDesktop() {
             delete newState[id];
             return newState;
         });
+    };
+
+    const toggleMinimize = (id) => {
+        setActiveWindows(prev => ({
+            ...prev,
+            [id]: { ...prev[id], isMinimized: !prev[id].isMinimized }
+        }));
+    };
+
+    const toggleMaximize = (id) => {
+        setActiveWindows(prev => ({
+            ...prev,
+            [id]: { ...prev[id], isMaximized: !prev[id].isMaximized }
+        }));
     };
 
     useEffect(() => {
@@ -101,6 +116,13 @@ export default function XPDesktop() {
                     icon="https://win98icons.alexmeub.com/icons/png/directory_closed-4.png"
                     onClick={() => handleOpenWindow('new-folder', 'New Folder', <div className="p-4">This is a new folder.</div>)}
                 />
+
+                {/* Paint */}
+                <DesktopIcon
+                    label="Paint"
+                    icon="https://win98icons.alexmeub.com/icons/png/paint-4.png"
+                    onClick={() => handleOpenWindow('paint', 'Untitled - Paint', <PaintApp />)}
+                />
             </div>
 
             {/* Windows Layer */}
@@ -108,8 +130,11 @@ export default function XPDesktop() {
                 <XPWindow
                     key={id}
                     title={window.title}
-                    isOpen={window.isOpen}
+                    isOpen={window.isOpen && !window.isMinimized}
+                    isMaximized={window.isMaximized}
                     onClose={() => handleCloseWindow(id)}
+                    onMinimize={() => toggleMinimize(id)}
+                    onMaximize={() => toggleMaximize(id)}
                 >
                     {window.content}
                 </XPWindow>
@@ -136,10 +161,30 @@ export default function XPDesktop() {
                         </button>
                         <div className="w-[2px] h-[80%] bg-[#1A3689] mx-1 border-l border-[#4375CA]"></div>
                     </div>
+
+                    {/* Taskbar Items */}
+                    <div className="flex items-center gap-1 pl-1">
+                        {Object.entries(activeWindows).map(([id, window]) => (
+                            <button
+                                key={id}
+                                onClick={() => {
+                                    if (window.isMinimized) toggleMinimize(id);
+                                    else toggleMinimize(id); // Simple toggle for now, ideally needs 'bring to front' check
+                                }}
+                                className={`w-[160px] h-[22px] flex items-center px-2 text-white text-xs text-left truncate rounded-[2px] 
+                                ${!window.isMinimized
+                                        ? 'bg-[#1F3B9F] shadow-[inset_1px_1px_2px_rgba(0,0,0,0.5)] border border-[#162C7A] bg-opacity-80'
+                                        : 'bg-[#3C81F3] hover:bg-[#5FA3F8] shadow-[1px_1px_0_rgba(255,255,255,0.2)] border border-[#162C7A]'}`}
+                            >
+                                <span className="truncate w-full">{window.title}</span>
+                            </button>
+                        ))}
+                    </div>
                 </div>
 
                 {/* System Tray */}
                 <div className="h-full bg-[#1291F2] border-l border-[#0D73C2] flex items-center px-3 shadow-[inset_1px_0_5px_rgba(0,0,0,0.2)]">
+
                     <div className="w-4 h-4 bg-white rounded-full mx-2 border border-[#0D73C2] shadow-sm flex items-center justify-center text-[10px] text-[#0D73C2]">
                         {/* Volume icon placeholder */}
                         V
