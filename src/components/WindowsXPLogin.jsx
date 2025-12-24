@@ -57,11 +57,16 @@ export default function WindowsXPLogin({ onLogin }) {
               >
                 {/* User Icon Frame */}
                 <div className={`w-16 h-16 rounded-[4px] border-2 border-white/60 bg-${user.iconColor}-400 shadow-md relative overflow-hidden flex items-center justify-center group-hover:border-[#Fcb63d]`}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-black/10"></div>
-                  {/* Generic User Avatar SVG */}
-                  <svg viewBox="0 0 24 24" className="w-10 h-10 text-white drop-shadow-sm opacity-90" fill="currentColor">
-                    <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
-                  </svg>
+                  {user.name === 'Kaveesha' ? (
+                    <img src="/profile.jpeg" alt={user.name} className="w-full h-full object-cover" />
+                  ) : (
+                    <>
+                      <div className="absolute inset-0 bg-gradient-to-br from-white/30 to-black/10"></div>
+                      <svg viewBox="0 0 24 24" className="w-10 h-10 text-white drop-shadow-sm opacity-90" fill="currentColor">
+                        <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z" />
+                      </svg>
+                    </>
+                  )}
                 </div>
 
                 {/* Username */}
