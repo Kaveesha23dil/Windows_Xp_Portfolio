@@ -6,6 +6,7 @@ import DesktopIcon from './DesktopIcon';
 import XPWindow from './XPWindow';
 import PaintApp from './PaintApp';
 import XPCommandPrompt from './XPCommandPrompt';
+import MyComputer from './MyComputer';
 
 
 export default function XPDesktop() {
@@ -97,17 +98,28 @@ export default function XPDesktop() {
 
             {/* Desktop Icons Area */}
             <div className="flex flex-col flex-wrap h-[calc(100vh-30px)] content-start p-2 gap-2">
-                {/* My Computer */}
                 <DesktopIcon
                     label="My Computer"
                     icon="/icons/my-computer.png"
                     onClick={() => handleOpenWindow('my-computer', 'My Computer',
-                        <div className="p-4 flex gap-4">
-                            <div className="flex flex-col items-center gap-1 group cursor-pointer w-20" onClick={() => handleOpenWindow('resume', 'Resume', <iframe src="/resume.pdf" className="w-full h-full" title="Resume" />)}>
-                                <img src="/icons/notepad.png" alt="Resume" className="w-10 h-10 object-contain" />
-                                <span className="text-black text-xs text-center px-1 rounded-sm group-hover:bg-[#316AC5] group-hover:text-white">Resume.pdf</span>
-                            </div>
-                        </div>
+                        <MyComputer onOpenWindow={(id, title, content) => {
+                            if (id === 'cmd') {
+                                // Special case for Terminal to ensure it imports logic if needed, or just re-use the component
+                                // But here we just need to call the parent's handleOpenWindow
+                                // We need to import XPCommandPrompt here or pass it? 
+                                // Better: parent handles content generation if content is null?
+                                // Let's just pass the component instance from MyComputer if possible? 
+                                // Actually, MyComputer doesn't import XPCommandPrompt.
+                                // We should pass a "requestOpen" callback that simple calls parent.
+                                // Let's simplify: pass existing handleOpenWindow to MyComputer. 
+                                // But MyComputer needs to know WHAT to render.
+                                // Quick fix: Import XPCommandPrompt in MyComputer? No, circular deps/cleanliness.
+                                // We'll pass the COMPONENT for specific IDs or let MyComputer handle simple content.
+                                // Ideally: XPDesktop passes a function that knows how to open 'cmd'.
+                            }
+                            // ... simple pass through for now
+                            handleOpenWindow(id, title, content || (id === 'cmd' ? <XPCommandPrompt /> : null));
+                        }} />
                     )}
                 />
 
