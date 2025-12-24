@@ -9,7 +9,7 @@ const StartMenu = ({ isOpen, onClose }) => {
             <div className="h-16 bg-gradient-to-r from-[#245DDA] via-[#4385E8] to-[#245DDA] flex items-center px-2 rounded-t-md border-b border-[#0F2C8D] relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/20 to-transparent pointer-events-none"></div>
                 <div className="w-12 h-12 bg-white rounded-sm border-[2px] border-white/60 shadow-sm flex items-center justify-center overflow-hidden mr-3">
-                    <img src="https://win98icons.alexmeub.com/icons/png/user_world-2.png" alt="User" className="w-full h-full object-cover" />
+                    <img src="/icons/user.png" alt="User" className="w-full h-full object-cover" />
                 </div>
                 <span className="text-white font-bold text-lg drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)]">Owner</span>
             </div>
@@ -20,15 +20,15 @@ const StartMenu = ({ isOpen, onClose }) => {
                 {/* Left Column - Programs */}
                 <div className="w-[50%] bg-white flex flex-col py-2 pl-1 pr-0 gap-1 border-r border-[#96ABDA]">
                     {/* Pinned Items */}
-                    <MenuItem icon="https://win98icons.alexmeub.com/icons/png/msie1-4.png" label="Internet" subLabel="Internet Explorer" bold />
-                    <MenuItem icon="https://win98icons.alexmeub.com/icons/png/outlook_express-4.png" label="E-mail" subLabel="Outlook Express" bold />
+                    <MenuItem icon="/icons/ie.png" label="Internet" subLabel="Internet Explorer" bold />
+                    <MenuItem icon="/icons/outlook.png" label="E-mail" subLabel="Outlook Express" bold />
 
                     <div className="my-1 border-b border-gray-300 w-[90%] self-center"></div>
 
-                    <MenuItem icon="https://win98icons.alexmeub.com/icons/png/media_player-4.png" label="Windows Media Player" />
-                    <MenuItem icon="https://win98icons.alexmeub.com/icons/png/msn2-4.png" label="MSN Explorer" />
-                    <MenuItem icon="https://win98icons.alexmeub.com/icons/png/moviemaker-4.png" label="Windows Movie Maker" />
-                    <MenuItem icon="https://win98icons.alexmeub.com/icons/png/solitaire-4.png" label="Solitaire" />
+                    <MenuItem icon="/icons/media-player.png" label="Windows Media Player" />
+                    <MenuItem icon="/icons/msn.png" label="MSN Explorer" />
+                    <MenuItem icon="/icons/movie-maker.png" label="Windows Movie Maker" />
+                    <MenuItem icon="/icons/solitaire.png" label="Solitaire" />
 
                     <div className="flex-1"></div>
 
@@ -40,30 +40,32 @@ const StartMenu = ({ isOpen, onClose }) => {
 
                 {/* Right Column - System Places */}
                 <div className="w-[50%] bg-[#D3E5FA] border-l border-[#96ABDA] py-2 pr-1 pl-1 flex flex-col gap-1">
-                    <MenuItem right icon="https://win98icons.alexmeub.com/icons/png/directory_open-4.png" label="My Documents" bold />
-                    <MenuItem right icon="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs-4.png" label="My Recent Documents" hasArrow />
-                    <MenuItem right icon="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_small-4.png" label="My Pictures" bold />
-                    <MenuItem right icon="https://win98icons.alexmeub.com/icons/png/directory_open_file_mydocs_small-4.png" label="My Music" bold />
-                    <MenuItem right icon="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png" label="My Computer" bold />
+                    <MenuItem right icon="/icons/folder-open.png" label="My Documents" bold />
+                    <MenuItem right icon="/icons/recent-docs.png" label="My Recent Documents" hasArrow />
+                    <MenuItem right icon="/icons/folder-small.png" label="My Pictures" bold />
+                    <MenuItem right icon="/icons/folder-small.png" label="My Music" bold />
+                    <MenuItem right icon="/icons/my-computer.png" label="My Computer" bold />
 
                     <div className="my-1 border-b border-[#AABCCF] w-[90%] self-center h-[1px]"></div>
 
                     <MenuItem right icon="https://win98icons.alexmeub.com/icons/png/control_panel-4.png" label="Control Panel" />
-                    <MenuItem right icon="https://win98icons.alexmeub.com/icons/png/network_internet_pcs_installer-4.png" label="Connect To" />
-                    <MenuItem right icon="https://win98icons.alexmeub.com/icons/png/printer-4.png" label="Printers and Faxes" />
+                    <MenuItem right icon="/icons/control-panel.png" label="Control Panel" />
+                    <MenuItem right icon="/icons/network.png" label="Connect To" />
+                    <MenuItem right icon="/icons/printer.png" label="Printers and Faxes" />
 
                     <div className="my-1 border-b border-[#AABCCF] w-[90%] self-center h-[1px]"></div>
 
-                    <MenuItem right icon="https://win98icons.alexmeub.com/icons/png/help_book_big-4.png" label="Help and Support" />
-                    <MenuItem right icon="https://win98icons.alexmeub.com/icons/png/search_file-4.png" label="Search" />
-                    <MenuItem right icon="https://win98icons.alexmeub.com/icons/png/run-4.png" label="Run..." />
+                    <MenuItem right icon="/icons/help.png" label="Help and Support" />
+                    <MenuItem right icon="/icons/search.png" label="Search" />
+                    <MenuItem right icon="/icons/run.png" label="Run..." />
                 </div>
             </div>
 
             {/* Footer */}
+            {/* Footer */}
             <div className="h-10 bg-gradient-to-b from-[#4282D6] to-[#3A75C5] flex items-center justify-end px-3 gap-3 border-t border-[#0F2C8D] shadow-[inset_0_2px_2px_rgba(255,255,255,0.3)]">
-                <FooterButton icon="https://win98icons.alexmeub.com/icons/png/key_win-4.png" label="Log Off" />
-                <FooterButton icon="https://win98icons.alexmeub.com/icons/png/shut_down_cool-4.png" label="Turn Off Computer" />
+                <FooterButton icon="/icons/log-off.png" label="Log Off" />
+                <FooterButton icon="/icons/shutdown.png" label="Turn Off Computer" />
             </div>
         </div>
     );

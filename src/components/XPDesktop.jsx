@@ -100,11 +100,11 @@ export default function XPDesktop() {
                 {/* My Computer */}
                 <DesktopIcon
                     label="My Computer"
-                    icon="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png"
+                    icon="/icons/my-computer.png"
                     onClick={() => handleOpenWindow('my-computer', 'My Computer',
                         <div className="p-4 flex gap-4">
                             <div className="flex flex-col items-center gap-1 group cursor-pointer w-20" onClick={() => handleOpenWindow('resume', 'Resume', <iframe src="/resume.pdf" className="w-full h-full" title="Resume" />)}>
-                                <img src="https://win98icons.alexmeub.com/icons/png/notepad-4.png" alt="Resume" className="w-10 h-10 object-contain" />
+                                <img src="/icons/notepad.png" alt="Resume" className="w-10 h-10 object-contain" />
                                 <span className="text-black text-xs text-center px-1 rounded-sm group-hover:bg-[#316AC5] group-hover:text-white">Resume.pdf</span>
                             </div>
                         </div>
@@ -114,35 +114,35 @@ export default function XPDesktop() {
                 {/* Recycle Bin */}
                 <DesktopIcon
                     label="Recycle Bin"
-                    icon="https://win98icons.alexmeub.com/icons/png/recycle_bin_empty-4.png"
+                    icon="/icons/recycle-bin.png"
                     onClick={() => handleOpenWindow('recycle-bin', 'Recycle Bin', <div className="p-4">Recycle Bin is empty.</div>)}
                 />
 
                 {/* New Folder */}
                 <DesktopIcon
                     label="New Folder"
-                    icon="https://win98icons.alexmeub.com/icons/png/directory_closed-4.png"
+                    icon="/icons/folder.png"
                     onClick={() => handleOpenWindow('new-folder', 'New Folder', <div className="p-4">This is a new folder.</div>)}
                 />
 
                 {/* Paint */}
                 <DesktopIcon
                     label="Paint"
-                    icon="https://win98icons.alexmeub.com/icons/png/paint-4.png"
+                    icon="/icons/paint.png"
                     onClick={() => handleOpenWindow('paint', 'Untitled - Paint', <PaintApp />)}
                 />
 
                 {/* Resume */}
                 <DesktopIcon
                     label="Resume"
-                    icon="https://win98icons.alexmeub.com/icons/png/notepad-4.png"
+                    icon="/icons/notepad.png"
                     onClick={() => handleOpenWindow('resume', 'Resume', <iframe src="/resume.pdf" className="w-full h-full" title="Resume" />)}
                 />
 
                 {/* Command Prompt */}
                 <DesktopIcon
                     label="Skills"
-                    icon="/cmd.png"
+                    icon="/icons/cmd.png"
                     onClick={() => handleOpenWindow('cmd', 'C:\\WINDOWS\\system32\\cmd.exe', <XPCommandPrompt />)}
                 />
             </div>
