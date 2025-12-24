@@ -100,7 +100,14 @@ export default function XPDesktop() {
                 <DesktopIcon
                     label="My Computer"
                     icon="https://win98icons.alexmeub.com/icons/png/computer_explorer-4.png"
-                    onClick={() => handleOpenWindow('my-computer', 'My Computer', <div className="p-4">Welcome to My Computer!</div>)}
+                    onClick={() => handleOpenWindow('my-computer', 'My Computer',
+                        <div className="p-4 flex gap-4">
+                            <div className="flex flex-col items-center gap-1 group cursor-pointer w-20" onClick={() => handleOpenWindow('resume', 'Resume', <iframe src="/resume.pdf" className="w-full h-full" title="Resume" />)}>
+                                <img src="https://win98icons.alexmeub.com/icons/png/notepad-4.png" alt="Resume" className="w-10 h-10 object-contain" />
+                                <span className="text-black text-xs text-center px-1 rounded-sm group-hover:bg-[#316AC5] group-hover:text-white">Resume.pdf</span>
+                            </div>
+                        </div>
+                    )}
                 />
 
                 {/* Recycle Bin */}
@@ -122,6 +129,13 @@ export default function XPDesktop() {
                     label="Paint"
                     icon="https://win98icons.alexmeub.com/icons/png/paint-4.png"
                     onClick={() => handleOpenWindow('paint', 'Untitled - Paint', <PaintApp />)}
+                />
+
+                {/* Resume */}
+                <DesktopIcon
+                    label="Resume"
+                    icon="https://win98icons.alexmeub.com/icons/png/notepad-4.png"
+                    onClick={() => handleOpenWindow('resume', 'Resume', <iframe src="/resume.pdf" className="w-full h-full" title="Resume" />)}
                 />
             </div>
 
