@@ -5,6 +5,7 @@ import StartMenu from './StartMenu';
 import DesktopIcon from './DesktopIcon';
 import XPWindow from './XPWindow';
 import PaintApp from './PaintApp';
+import XPCommandPrompt from './XPCommandPrompt';
 
 
 export default function XPDesktop() {
@@ -136,6 +137,13 @@ export default function XPDesktop() {
                     label="Resume"
                     icon="https://win98icons.alexmeub.com/icons/png/notepad-4.png"
                     onClick={() => handleOpenWindow('resume', 'Resume', <iframe src="/resume.pdf" className="w-full h-full" title="Resume" />)}
+                />
+
+                {/* Command Prompt */}
+                <DesktopIcon
+                    label="Skills"
+                    icon="/cmd.png"
+                    onClick={() => handleOpenWindow('cmd', 'C:\\WINDOWS\\system32\\cmd.exe', <XPCommandPrompt />)}
                 />
             </div>
 
