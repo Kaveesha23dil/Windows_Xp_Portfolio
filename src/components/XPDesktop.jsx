@@ -7,6 +7,8 @@ import XPWindow from './XPWindow';
 import PaintApp from './PaintApp';
 import XPCommandPrompt from './XPCommandPrompt';
 import MyComputer from './MyComputer';
+import ProjectExplorer from './ProjectExplorer';
+import ProjectDetail from './ProjectDetail';
 
 
 export default function XPDesktop() {
@@ -130,12 +132,7 @@ export default function XPDesktop() {
                     onClick={() => handleOpenWindow('recycle-bin', 'Recycle Bin', <div className="p-4">Recycle Bin is empty.</div>)}
                 />
 
-                {/* New Folder */}
-                <DesktopIcon
-                    label="New Folder"
-                    icon="/icons/folder.png"
-                    onClick={() => handleOpenWindow('new-folder', 'New Folder', <div className="p-4">This is a new folder.</div>)}
-                />
+
 
                 {/* Paint */}
                 <DesktopIcon
@@ -156,6 +153,17 @@ export default function XPDesktop() {
                     label="Skills"
                     icon="/icons/cmd.png"
                     onClick={() => handleOpenWindow('cmd', 'C:\\WINDOWS\\system32\\cmd.exe', <XPCommandPrompt />)}
+                />
+
+                {/* My Projects */}
+                <DesktopIcon
+                    label="My Projects"
+                    icon="/icons/folder.png"
+                    onClick={() => handleOpenWindow('my-projects', 'My Projects',
+                        <ProjectExplorer
+                            onOpenProject={(project) => handleOpenWindow(`project-${project.id}`, project.title, <ProjectDetail project={project} />)}
+                        />
+                    )}
                 />
             </div>
 
@@ -180,7 +188,13 @@ export default function XPDesktop() {
                 {/* Left Side: Start Button & Menu */}
                 <div className="h-full flex items-center relative">
                     <div ref={startMenuRef}>
-                        <StartMenu isOpen={isStartMenuOpen} onClose={() => setIsStartMenuOpen(false)} />
+                        <StartMenu
+                            isOpen={isStartMenuOpen}
+                            onClose={() => setIsStartMenuOpen(false)}
+                            onOpenWindow={handleOpenWindow}
+                            onLogOff={() => alert("Log Off functionality coming soon!")}
+                            onTurnOff={() => alert("Turn Off Computer functionality coming soon!")}
+                        />
                     </div>
 
                     <div className="h-full flex items-center" ref={startButtonRef}>
