@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import xpLogo from '../assets/xp.png'; // Assuming this exists, based on previous code
+import xpLogo from '../assets/xp.png';
 
 export default function WindowsXPLogin({ onLogin }) {
   const [hoveredUser, setHoveredUser] = useState(null);
@@ -9,9 +9,10 @@ export default function WindowsXPLogin({ onLogin }) {
     { name: 'Guest', iconColor: 'blue' }
   ];
 
-  const handleUserClick = () => {
+  const handleUserClick = (user) => {
+    // Immediate transition to App-level Welcome screen
     if (onLogin) {
-      onLogin(); // Trigger login state change
+      onLogin();
     }
   };
 
@@ -26,7 +27,6 @@ export default function WindowsXPLogin({ onLogin }) {
       {/* Main Content Area */}
       <div className="flex-1 w-full flex items-center justify-center relative">
         <div className="w-full max-w-4xl flex items-center gap-0">
-
           {/* Left Side: Logo & Instructions */}
           <div className="flex-1 flex flex-col items-end pr-8 py-8 text-right space-y-4">
             <div className="flex items-center gap-2 mb-4">
@@ -50,7 +50,7 @@ export default function WindowsXPLogin({ onLogin }) {
             {users.map((user, index) => (
               <div
                 key={index}
-                onClick={handleUserClick}
+                onClick={() => handleUserClick(user)}
                 className={`group flex items-center gap-4 p-2 pl-4 rounded-lg transition-all duration-200 cursor-pointer w-72 border-2 ${hoveredUser === index ? 'bg-[#315BB6]/50 border-[#Fcb63d]/80' : 'bg-transparent border-transparent'}`}
                 onMouseEnter={() => setHoveredUser(index)}
                 onMouseLeave={() => setHoveredUser(null)}

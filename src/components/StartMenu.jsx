@@ -40,21 +40,21 @@ const StartMenu = ({ isOpen, onClose, onOpenWindow, onLogOff, onTurnOff }) => {
                         label="LinkedIn"
                         subLabel="Professional Profile"
                         bold
-                        onClick={() => window.open('https://linkedin.com/in/kaveesha', '_blank')}
+                        onClick={() => window.open('https://www.linkedin.com/in/kaveesha-dilshan-6196a7274/', '_blank')}
                     />
                     <MenuItem
                         icon="/icons/github.png"
                         label="GitHub"
                         subLabel="Code Repositories"
                         bold
-                        onClick={() => window.open('https://github.com/', '_blank')}
+                        onClick={() => window.open('https://github.com/Kaveesha23dil', '_blank')}
                     />
                     <MenuItem
                         icon="/icons/behance.png"
                         label="Behance"
                         subLabel="Design Portfolio"
                         bold
-                        onClick={() => window.open('https://behance.net/', '_blank')}
+                        onClick={() => window.open('https://www.behance.net/kaveeshadilshan10', '_blank')}
                     />
                     <MenuItem
                         icon="/icons/outlook.png"
