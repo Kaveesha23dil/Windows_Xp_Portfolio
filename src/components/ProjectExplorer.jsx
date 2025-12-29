@@ -3,12 +3,21 @@ import React from 'react';
 // Sample Project Data - in a real app this might come from an API or separate file
 const PROJECTS = [
     {
+        id: 'modern-bar',
+        title: 'Modern Bar Website',
+        icon: '/icons/folder.png',
+        image: '/projects/barwebsite.png',
+        description: 'A stunning, modern luxury bar website with a dark moody aesthetic, elegant typography, and gold accents. Features a professional UI design with a hero section showcasing signature cocktails.',
+        github: 'https://github.com/Kaveesha23dil/cocltails_website',
+        tech: ['React', 'TailwindCSS', 'GSAP']
+    },
+    {
         id: 'project-1',
         title: '3D City Portfolio',
         icon: '/icons/folder.png',
         image: 'https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?q=80&w=2613&auto=format&fit=crop',
         description: 'A 3D interactive portfolio featuring a navigable city environment built with React, Three.js, and TailwindCSS.',
-        github: 'https://github.com/example/city-portfolio',
+        github: 'https://github.com/kaveesha/city-portfolio',
         tech: ['React', 'Three.js', 'Tailwind']
     },
     {
@@ -17,7 +26,7 @@ const PROJECTS = [
         icon: '/icons/folder.png',
         image: 'https://images.unsplash.com/photo-1556742049-0cfed4f7a07d?q=80&w=2670&auto=format&fit=crop',
         description: 'A full-stack e-commerce solution with cart functionality, payment processing, and admin dashboard.',
-        github: 'https://github.com/example/ecommerce',
+        github: 'https://github.com/kaveesha/ecommerce',
         tech: ['Next.js', 'Stripe', 'MongoDB']
     },
     {
@@ -26,7 +35,7 @@ const PROJECTS = [
         icon: '/icons/folder.png',
         image: 'https://images.unsplash.com/photo-1540350394557-8d14678e7f91?q=80&w=2532&auto=format&fit=crop',
         description: 'A productivity application for managing daily tasks and team collaboration with real-time updates.',
-        github: 'https://github.com/example/task-manager',
+        github: 'https://github.com/kaveesha/task-manager',
         tech: ['React', 'Firebase', 'Redux']
     },
     {
@@ -35,7 +44,7 @@ const PROJECTS = [
         icon: '/icons/folder.png',
         image: 'https://images.unsplash.com/photo-1592210454359-9043f067919b?q=80&w=2670&auto=format&fit=crop',
         description: 'Real-time weather tracking application using OpenWeatherMap API with data visualization.',
-        github: 'https://github.com/example/weather-app',
+        github: 'https://github.com/kaveesha/weather-app',
         tech: ['Vue.js', 'Chart.js', 'API']
     }
 ];

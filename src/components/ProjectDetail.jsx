@@ -43,7 +43,7 @@ const ProjectDetail = ({ project }) => {
                             rel="noopener noreferrer"
                             className="flex items-center gap-1 hover:underline text-[#0000FF] text-sm"
                         >
-                            <img src="/icons/ie.png" alt="" className="w-4 h-4" />
+                            <img src="/icons/github.png" alt="" className="w-4 h-4" />
                             View on GitHub
                         </a>
                     </div>
