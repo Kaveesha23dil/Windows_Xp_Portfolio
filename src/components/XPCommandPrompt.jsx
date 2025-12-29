@@ -54,9 +54,10 @@ export default function XPCommandPrompt() {
                     "--------------------------------------------------",
                     "  CONTACT INFORMATION",
                     "--------------------------------------------------",
-                    "  > Email:      kaveesha@example.com",
-                    "  > GitHub:     github.com/kaveesha",
-                    "  > LinkedIn:   linkedin.com/in/kaveesha",
+                    "  > Email:      kaveeshadilshankd23@gmail.com",
+                    "  > GitHub:     github.com/Kaveesha23dil",
+                    "  > LinkedIn:   linkedin.com/in/kaveesha-dilshan-6196a7274/",
+                    "  > Behance:    behance.net/kaveeshadilshan10",
                     "--------------------------------------------------"
                 );
                 break;

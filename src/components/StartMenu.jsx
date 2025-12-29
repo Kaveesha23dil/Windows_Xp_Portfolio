@@ -24,9 +24,9 @@ const StartMenu = ({ isOpen, onClose, onOpenWindow, onLogOff, onTurnOff }) => {
             <div className="h-16 bg-gradient-to-r from-[#245DDA] via-[#4385E8] to-[#245DDA] flex items-center px-2 rounded-t-md border-b border-[#0F2C8D] relative overflow-hidden">
                 <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-white/20 to-transparent pointer-events-none"></div>
                 <div className="w-12 h-12 bg-white rounded-sm border-[2px] border-white/60 shadow-sm flex items-center justify-center overflow-hidden mr-3">
-                    <img src="/icons/user.png" alt="User" className="w-full h-full object-cover" />
+                    <img src="/profile.jpeg" alt="User" className="w-full h-full object-cover" />
                 </div>
-                <span className="text-white font-bold text-lg drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)]">Owner</span>
+                <span className="text-white font-bold text-lg drop-shadow-[1px_1px_1px_rgba(0,0,0,0.5)]">Kaveesha</span>
             </div>
 
             {/* Main Body */}

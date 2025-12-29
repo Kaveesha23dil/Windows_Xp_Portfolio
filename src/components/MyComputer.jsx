@@ -78,12 +78,12 @@ const MyComputer = ({ onOpenWindow }) => {
                     </div>
                     <div className="flex flex-wrap gap-4">
                         <DriveItem
-                            label="Local Disk (C:)"
+                            label="Portfolio (C:)"
                             type="Local Disk"
                             totalSize="80.0 GB"
                             freeSpace="55.2 GB"
                             icon="/icons/my-computer.png" // Fallback
-                            onClick={() => onOpenWindow('c-drive', 'Local Disk (C:)', <div className="p-4">Projects Folder Content Coming Soon...</div>)}
+                            onClick={() => onOpenWindow('c-drive', 'Portfolio (C:)', <div className="p-4">Projects Folder Content Coming Soon...</div>)}
                         />
                         <DriveItem
                             label="Skills (D:)"
@@ -117,9 +117,11 @@ const MyComputer = ({ onOpenWindow }) => {
                             onClick={() => onOpenWindow('notepad', 'Contact.txt',
                                 <div className="p-2 font-mono bg-white h-full text-black whitespace-pre-wrap">
                                     [CONTACT_INFO]
-                                    Email: kaveesha@example.com
+                                    Email: kaveeshadilshankd23@gmail.com
                                     Phone: +1 234 567 890
-                                    LinkedIn: linkedin.com/in/kaveesha
+                                    LinkedIn: linkedin.com/in/kaveesha-dilshan-6196a7274/
+                                    GitHub: github.com/Kaveesha23dil
+                                    Behance: behance.net/kaveeshadilshan10
                                 </div>
                             )}
                         />
