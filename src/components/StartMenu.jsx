@@ -61,7 +61,7 @@ const StartMenu = ({ isOpen, onClose, onOpenWindow, onLogOff, onTurnOff }) => {
                         label="E-mail"
                         subLabel="Contact Me"
                         bold
-                        onClick={() => window.location.href = 'mailto:kaveesha@example.com'}
+                        onClick={() => window.location.href = 'mailto:kaveeshadilshankd23@gmail.com'}
                     />
 
                     <div className="my-1 border-b border-gray-300 w-[90%] self-center"></div>

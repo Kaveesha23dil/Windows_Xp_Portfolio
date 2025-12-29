@@ -40,10 +40,10 @@ const XPLoading = () => {
       {/* Footer Copyright */}
       <div className="absolute bottom-8 flex items-center justify-between w-full px-8">
         <div className="text-white/60 text-xs">
-          Copyright © Microsoft Corporation
+          Copyright © Kaveesha Dilshan
         </div>
         <div className="text-white/60 font-bold text-xs italic tracking-widest">
-          Microsoft
+          Kaveesha Dilshan
         </div>
       </div>
 
