@@ -2,7 +2,7 @@
 
 A nostalgic, fully interactive Windows XP-themed portfolio website built with React and TailwindCSS.
 
-![Windows XP Portfolio](public/background.jpg)
+![Windows XP Portfolio](public/background.png)
 
 ## 🌟 Features
 
