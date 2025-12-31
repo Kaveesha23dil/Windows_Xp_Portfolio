@@ -106,18 +106,7 @@ export default function XPDesktop() {
                     onClick={() => handleOpenWindow('my-computer', 'My Computer',
                         <MyComputer onOpenWindow={(id, title, content) => {
                             if (id === 'cmd') {
-                                // Special case for Terminal to ensure it imports logic if needed, or just re-use the component
-                                // But here we just need to call the parent's handleOpenWindow
-                                // We need to import XPCommandPrompt here or pass it? 
-                                // Better: parent handles content generation if content is null?
-                                // Let's just pass the component instance from MyComputer if possible? 
-                                // Actually, MyComputer doesn't import XPCommandPrompt.
-                                // We should pass a "requestOpen" callback that simple calls parent.
-                                // Let's simplify: pass existing handleOpenWindow to MyComputer. 
-                                // But MyComputer needs to know WHAT to render.
-                                // Quick fix: Import XPCommandPrompt in MyComputer? No, circular deps/cleanliness.
-                                // We'll pass the COMPONENT for specific IDs or let MyComputer handle simple content.
-                                // Ideally: XPDesktop passes a function that knows how to open 'cmd'.
+                                // Special case for Terminal to ensure it imports logic if needed
                             }
                             // ... simple pass through for now
                             handleOpenWindow(id, title, content || (id === 'cmd' ? <XPCommandPrompt /> : null));

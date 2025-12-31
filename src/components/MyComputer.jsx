@@ -116,7 +116,7 @@ const MyComputer = ({ onOpenWindow }) => {
                             icon="/icons/my-computer.png" // Fallback
                             onClick={() => onOpenWindow('notepad', 'Contact.txt',
                                 <div className="p-2 font-mono bg-white h-full text-black whitespace-pre-wrap">
-                                    [CONTACT_INFO]
+
                                     Email: kaveeshadilshankd23@gmail.com
                                     Phone: +1 234 567 890
                                     LinkedIn: linkedin.com/in/kaveesha-dilshan-6196a7274/

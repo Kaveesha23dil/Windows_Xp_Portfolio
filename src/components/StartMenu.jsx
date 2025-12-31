@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import MyComputer from './MyComputer';
 import PaintApp from './PaintApp';
 import XPCommandPrompt from './XPCommandPrompt';
+import MyPictures from './MyPictures';
+import PictureViewer from './PictureViewer';
 
 const StartMenu = ({ isOpen, onClose, onOpenWindow, onLogOff, onTurnOff }) => {
     const [showAllPrograms, setShowAllPrograms] = useState(false);
@@ -146,7 +148,21 @@ const StartMenu = ({ isOpen, onClose, onOpenWindow, onLogOff, onTurnOff }) => {
                         onClick={() => handleGenericClick('my-documents', 'My Documents', <div className="p-4">My Documents Content</div>)}
                     />
                     <MenuItem right icon="/icons/recent-docs.png" label="My Recent Documents" hasArrow />
-                    <MenuItem right icon="/icons/folder-small.png" label="My Pictures" bold />
+                    <MenuItem
+                        right
+                        icon="/icons/folder-small.png"
+                        label="My Pictures"
+                        bold
+                        onClick={() => handleGenericClick('my-pictures', 'My Pictures',
+                            <MyPictures
+                                onOpenImage={(img) => {
+                                    if (onOpenWindow) {
+                                        onOpenWindow(`img-${img.id}`, `${img.title} - Windows Picture and Fax Viewer`, <PictureViewer image={img} />);
+                                    }
+                                }}
+                            />
+                        )}
+                    />
                     <MenuItem right icon="/icons/folder-small.png" label="My Music" bold />
                     <MenuItem
                         right
