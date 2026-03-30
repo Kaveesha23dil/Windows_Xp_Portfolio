@@ -20,6 +20,17 @@ export default function XPDesktop() {
 
     // Window Management
     const handleOpenWindow = (id, title, content) => {
+        // Provide default content for navigation routes
+        const defaultContent = {
+            'about-me': <div className="p-6 text-center bg-gradient-to-b from-gray-50 to-white h-full"><h2 className="text-3xl font-bold mb-4 text-blue-900">About Me</h2><p className="text-gray-700 max-w-md mx-auto">Your bio information would appear here.</p></div>,
+            'my-projects': <ProjectExplorer onOpenProject={(project) => handleOpenWindow(`project-${project.id}`, project.title, <ProjectDetail project={project} />)} />,
+            'skills': <XPCommandPrompt />,
+            'resume': <iframe src="/resume.pdf" className="w-full h-full" title="Resume" />,
+            'contact': <div className="p-6 text-center bg-gradient-to-b from-gray-50 to-white h-full"><h2 className="text-3xl font-bold mb-4 text-blue-900">Contact Me</h2><p className="text-gray-700 mb-2">Email: kaveeshadilshankd23@gmail.com</p><p className="text-gray-700">LinkedIn: <a href="https://www.linkedin.com/in/kaveesha-dilshan-6196a7274/" target="_blank" className="text-blue-600 hover:underline">Kaveesha Dilshan</a></p></div>
+        };
+
+        const finalContent = content !== undefined ? content : defaultContent[id];
+
         if (activeWindows[id]) {
             setActiveWindows(prev => ({
                 ...prev,
@@ -30,7 +41,7 @@ export default function XPDesktop() {
 
         setActiveWindows(prev => ({
             ...prev,
-            [id]: { title, content, isOpen: true, isMinimized: false, isMaximized: false }
+            [id]: { title, content: finalContent, isOpen: true, isMinimized: false, isMaximized: false }
         }));
     };
 
@@ -181,8 +192,25 @@ export default function XPDesktop() {
                             isOpen={isStartMenuOpen}
                             onClose={() => setIsStartMenuOpen(false)}
                             onOpenWindow={handleOpenWindow}
-                            onLogOff={() => alert("Log Off functionality coming soon!")}
-                            onTurnOff={() => alert("Turn Off Computer functionality coming soon!")}
+                            onLogOff={() => {
+                                if (window.confirm("Are you sure you want to log off? This will close all open windows.")) {
+                                    setActiveWindows({});
+                                    alert("Log Off: This would log you out in a real system.");
+                                }
+                            }}
+                            onTurnOff={(action) => {
+                                if (action === 'shutdown') {
+                                    if (window.confirm("Are you sure you want to shut down the computer?")) {
+                                        alert("System shutting down... (Demo only)");
+                                    }
+                                } else if (action === 'restart') {
+                                    if (window.confirm("Are you sure you want to restart the computer?")) {
+                                        alert("System restarting... (Demo only)");
+                                    }
+                                } else if (action === 'cancel') {
+                                    // Just close the dialog
+                                }
+                            }}
                         />
                     </div>
 
