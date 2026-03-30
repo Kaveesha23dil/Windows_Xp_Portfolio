@@ -3,35 +3,59 @@ import XPLoading from './components/XPLoading';
 import WindowsXPLogin from './components/WindowsXPLogin';
 import XPWelcome from './components/XPWelcome';
 import XPDesktop from './components/XPDesktop';
+import XPBootScreen from './components/XPBootScreen';
 
 const App = () => {
-  const [loading, setLoading] = useState(true);
-  const [showWelcome, setShowWelcome] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  // Stage-based state machine: 'boot' | 'loading' | 'login' | 'welcome' | 'desktop'
+  const [stage, setStage] = useState(() => {
+    const hasBooted = sessionStorage.getItem('xp-booted');
+    if (!hasBooted) {
+      sessionStorage.setItem('xp-booted', 'true');
+      return 'boot';
+    }
+    return 'loading';
+  });
 
   useEffect(() => {
-    // Simulate a loading delay (e.g., fetching data)
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 5000); // 5 seconds
+    if (stage === 'boot') {
+      const timer = setTimeout(() => setStage('loading'), 3500);
+      return () => clearTimeout(timer);
+    }
+  }, [stage]);
 
-    return () => clearTimeout(timer);
-  }, []);
+  useEffect(() => {
+    if (stage === 'loading') {
+      const timer = setTimeout(() => setStage('login'), 500);
+      return () => clearTimeout(timer);
+    }
+  }, [stage]);
 
   const handleLogin = () => {
-    setShowWelcome(true);
+    setStage('welcome');
   };
 
   const handleWelcomeComplete = () => {
-    setShowWelcome(false);
-    setIsLoggedIn(true);
+    setStage('desktop');
   };
 
-  if (loading) return <XPLoading />;
-  if (isLoggedIn) return <XPDesktop />;
-  if (showWelcome) return <XPWelcome onComplete={handleWelcomeComplete} />;
+  // Render based on current stage
+  if (stage === 'boot') {
+    return <XPBootScreen onComplete={() => {}} />;
+  }
 
-  return <WindowsXPLogin onLogin={handleLogin} />;
+  if (stage === 'loading') {
+    return <XPLoading />;
+  }
+
+  if (stage === 'login') {
+    return <WindowsXPLogin onLogin={handleLogin} />;
+  }
+
+  if (stage === 'welcome') {
+    return <XPWelcome onComplete={handleWelcomeComplete} />;
+  }
+
+  return <XPDesktop />;
 };
 
 export default App;

@@ -9,6 +9,7 @@ export default {
       animation: {
         'slide': 'slide 2s linear infinite',
         'slide-up': 'slideUp 0.2s ease-out forwards',
+        'progress-block': 'progressBlock 1.2s ease-in-out infinite',
       },
       keyframes: {
         slide: {
@@ -18,6 +19,10 @@ export default {
         slideUp: {
           '0%': { transform: 'translateY(100%)', opacity: 0 },
           '100%': { transform: 'translateY(0)', opacity: 1 },
+        },
+        progressBlock: {
+          '0%, 100%': { opacity: 0.3, transform: 'scaleY(0.5)' },
+          '50%': { opacity: 1, transform: 'scaleY(1)' },
         }
       }
     },
