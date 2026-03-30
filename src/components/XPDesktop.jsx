@@ -9,6 +9,7 @@ import XPCommandPrompt from './XPCommandPrompt';
 import MyComputer from './MyComputer';
 import ProjectExplorer from './ProjectExplorer';
 import ProjectDetail from './ProjectDetail';
+import XPTaskbar from './XPTaskbar';
 
 
 export default function XPDesktop() {
