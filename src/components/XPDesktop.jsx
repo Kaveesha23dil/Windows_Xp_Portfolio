@@ -10,24 +10,28 @@ import MyComputer from './MyComputer';
 import ProjectExplorer from './ProjectExplorer';
 import ProjectDetail from './ProjectDetail';
 import XPTaskbar from './XPTaskbar';
+import ResumeDocumentIcon from './ResumeDocumentIcon';
+import ResumeNotepad from './ResumeNotepad';
 
 
 export default function XPDesktop() {
     const [time, setTime] = useState(new Date());
     const [isStartMenuOpen, setIsStartMenuOpen] = useState(false);
     const [activeWindows, setActiveWindows] = useState({});
+    const [selectedIconId, setSelectedIconId] = useState(null);
     const startMenuRef = useRef(null);
     const startButtonRef = useRef(null);
 
     // Window Management
-    const handleOpenWindow = (id, title, content) => {
+    const handleOpenWindow = (id, title, content, windowOptions = {}) => {
         // Provide default content for navigation routes
         const defaultContent = {
             'about-me': <div className="p-6 text-center bg-gradient-to-b from-gray-50 to-white h-full"><h2 className="text-3xl font-bold mb-4 text-blue-900">About Me</h2><p className="text-gray-700 max-w-md mx-auto">Your bio information would appear here.</p></div>,
             'my-projects': <ProjectExplorer onOpenProject={(project) => handleOpenWindow(`project-${project.id}`, project.title, <ProjectDetail project={project} />)} />,
             'skills': <XPCommandPrompt />,
             'resume': <iframe src="/New%20Resume.pdf" className="w-full h-full" title="Resume" />,
-            'contact': <div className="p-6 text-center bg-gradient-to-b from-gray-50 to-white h-full"><h2 className="text-3xl font-bold mb-4 text-blue-900">Contact Me</h2><p className="text-gray-700 mb-2">Email: kaveeshadilshankd23@gmail.com</p><p className="text-gray-700">LinkedIn: <a href="https://www.linkedin.com/in/kaveesha-dilshan-6196a7274/" target="_blank" className="text-blue-600 hover:underline">Kaveesha Dilshan</a></p></div>
+            'contact': <div className="p-6 text-center bg-gradient-to-b from-gray-50 to-white h-full"><h2 className="text-3xl font-bold mb-4 text-blue-900">Contact Me</h2><p className="text-gray-700 mb-2">Email: kaveeshadilshankd23@gmail.com</p><p className="text-gray-700">LinkedIn: <a href="https://www.linkedin.com/in/kaveesha-dilshan-6196a7274/" target="_blank" className="text-blue-600 hover:underline">Kaveesha Dilshan</a></p></div>,
+            'resume-notepad': <ResumeNotepad onClose={() => handleCloseWindow('resume-notepad')} />
         };
 
         const finalContent = content !== undefined ? content : defaultContent[id];
@@ -42,7 +46,7 @@ export default function XPDesktop() {
 
         setActiveWindows(prev => ({
             ...prev,
-            [id]: { title, content: finalContent, isOpen: true, isMinimized: false, isMaximized: false }
+            [id]: { title, content: finalContent, isOpen: true, isMinimized: false, isMaximized: false, options: windowOptions }
         }));
     };
 
@@ -66,6 +70,15 @@ export default function XPDesktop() {
             ...prev,
             [id]: { ...prev[id], isMaximized: !prev[id].isMaximized }
         }));
+    };
+
+    const triggerDownload = () => {
+        const link = document.createElement('a');
+        link.href = '/New%20Resume.pdf';
+        link.download = 'Resume.pdf';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     };
 
     useEffect(() => {
@@ -111,7 +124,10 @@ export default function XPDesktop() {
             </div>
 
             {/* Desktop Icons Area */}
-            <div className="flex flex-col flex-wrap h-[calc(100vh-30px)] content-start p-2 gap-2">
+            <div
+                className="flex flex-col flex-wrap h-[calc(100vh-30px)] content-start p-2 gap-2"
+                onClick={() => setSelectedIconId(null)}
+            >
                 <DesktopIcon
                     label="My Computer"
                     icon="/icons/my-computer.png"
@@ -149,6 +165,18 @@ export default function XPDesktop() {
                     onClick={() => handleOpenWindow('resume', 'Resume', <iframe src="/New%20Resume.pdf" className="w-full h-full" title="Resume" />)}
                 />
 
+                {/* Resume.pdf - Enhanced Document Icon */}
+                <DesktopIcon
+                    label="Resume.pdf"
+                    icon={<ResumeDocumentIcon />}
+                    isSelected={selectedIconId === 'resume-pdf'}
+                    onClick={() => setSelectedIconId('resume-pdf')}
+                    onDoubleClick={() => {
+                        triggerDownload();
+                        handleOpenWindow('resume-notepad', 'Resume.pdf - Notepad', undefined, { showDefaultMenu: false, hideStatusBar: true });
+                    }}
+                />
+
                 {/* Command Prompt */}
                 <DesktopIcon
                     label="Skills"
@@ -178,6 +206,7 @@ export default function XPDesktop() {
                     onClose={() => handleCloseWindow(id)}
                     onMinimize={() => toggleMinimize(id)}
                     onMaximize={() => toggleMaximize(id)}
+                    {...(window.options || {})}
                 >
                     {window.content}
                 </XPWindow>
