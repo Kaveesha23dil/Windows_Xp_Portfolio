@@ -108,7 +108,7 @@ const MyComputer = ({ onOpenWindow }) => {
                             totalSize="700 MB"
                             freeSpace="0 bytes"
                             icon="/icons/my-computer.png" // Fallback
-                            onClick={() => onOpenWindow('resume', 'Resume', <iframe src="/resume.pdf" className="w-full h-full" title="Resume" />)}
+                            onClick={() => onOpenWindow('resume', 'Resume', <iframe src="/New%20Resume.pdf" className="w-full h-full" title="Resume" />)}
                         />
                         <DriveItem
                             label="Contact (A:)"

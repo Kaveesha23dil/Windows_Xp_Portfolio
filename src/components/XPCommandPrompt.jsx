@@ -119,7 +119,7 @@ export default function XPCommandPrompt() {
                     "01/01/2002  12:00 PM    <DIR>          ..",
                     "05/20/2024  09:30 AM    <DIR>          Desktop",
                     "05/20/2024  09:30 AM    <DIR>          My Documents",
-                    "12/25/2025  01:15 AM           102,400 resume.pdf",
+                    "12/25/2025  01:15 AM           102,400 New Resume.pdf",
                     "               1 File(s)        102,400 bytes",
                     "               4 Dir(s)  15,234,456,789 bytes free"
                 );
